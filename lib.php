@@ -56,7 +56,7 @@ function bootstrapelements_update_instance($bootstrapelements) {
     global $DB;
 
     $bootstrapelements->timemodified = time();
-    $bootstrapelements->id = $bootstrap->instance;
+    $bootstrapelements->id = $bootstrapelements->instance;
 
     return $DB->update_record("bootstrapelements", $bootstrapelements);
 }
@@ -99,26 +99,26 @@ function bootstrapelements_delete_instance($id) {
 function bootstrapelements_get_coursemodule_info($coursemodule) {
     global $DB;
     
-    if ($bootstrapelements = $DB->get_record('bootstrap', array('id'=>$coursemodule->instance), 'id, name, intro, introformat, title, bootstraptype')) {
-        if (!$bootstrapelements->name || $bootstrapelements->name == 'bootstrap') {
-            $bootstrapelements->name = "bootstrap".$bootstrapelements->id;
-            $DB->set_field('bootstrap', 'name', $bootstrapelements->name, array('id'=>$bootstrapelements->id));
+    if ($bootstrapelements = $DB->get_record('bootstrapelements', array('id'=>$coursemodule->instance), 'id, name, intro, introformat, title, bootstraptype')) {
+        if (!$bootstrapelements->name || $bootstrapelements->name == 'bootstrapelements') {
+            $bootstrapelements->name = "bootstrapelements".$bootstrapelements->id;
+            $DB->set_field('bootstrapelements', 'name', $bootstrapelements->name, array('id'=>$bootstrapelements->id));
         }
         
         $info = new cached_cm_info();
         // no filtering hre because this info is cached and filtered later
         
-        switch($bootstrap->bootstraptype) {
+        switch($bootstrapelements->bootstraptype) {
             case 0:
-                $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrap->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false)).bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title);    
+                $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false)).bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title);    
             break;
             
             case 1:
-                $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrap->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));    
+                $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));    
             break;
             
             case 2:
-                $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrap->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
+                $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
             break;
         }
 
@@ -192,7 +192,7 @@ function bootstrapelements_standard($name, $title, $content) {
 
 function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecontent) {
     $output = html_writer::start_tag('div', array(
-        'class' => 'mod-bootstrap-toggle'
+        'class' => 'mod-bootstrapelements-toggle'
     ));
     $output .= html_writer::start_tag('div', array(
         'class' => 'panel-heading'

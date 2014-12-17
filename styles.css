@@ -1,0 +1,9 @@
+.mod-bootstrapelements-toggle {
+	min-width: 200px;
+}
+
+.mod-bootstrapelements-toggle .panel-heading a {
+	max-width: 100%;
+	white-space: normal;
+	display: inline;
+}

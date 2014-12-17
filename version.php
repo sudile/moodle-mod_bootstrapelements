@@ -30,3 +30,4 @@ $plugin->version   = 2014120900;       // The current module version (Date: YYYY
 $plugin->requires  = 2014050800;    // Requires this Moodle version
 $plugin->component = 'mod_bootstrapelements'; // Full name of the plugin (used for diagnostics)
 $plugin->cron      = 0;
+$plugin->release   = '1.0';

@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 
-class mod_bootstrap_mod_form extends moodleform_mod {
+class mod_bootstrapelements_mod_form extends moodleform_mod {
 
     function definition() {
 
