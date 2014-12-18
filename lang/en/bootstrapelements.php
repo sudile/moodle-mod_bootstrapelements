@@ -26,7 +26,7 @@
 
 $string['bootstrapelements:addinstance'] = 'Add a new bootstrap element';
 $string['bootstraptext'] = 'Bootstrap text';
-$string['modulename'] = 'Bootstrap';
+$string['modulename'] = 'Bootstrap Elements';
 $string['modulename_help'] = 'The bootstrap module allows you to display text and multimedia content, in a drop-down section, popup box or as an enhanced label. They can be used to improve the appearance of your course, and save space on the course page.
 
 Bootstrap may be used
