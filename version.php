@@ -31,3 +31,4 @@ $plugin->requires  = 2014050800;    // Requires this Moodle version
 $plugin->component = 'mod_bootstrapelements'; // Full name of the plugin (used for diagnostics)
 $plugin->cron      = 0;
 $plugin->release   = '1.0';
+$plugin->maturity  = 'MATURITY_RC';
