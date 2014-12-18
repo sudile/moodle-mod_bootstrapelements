@@ -27,6 +27,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $logs = array(
-    array('module'=>'bootstrapelements', 'action'=>'add', 'mtable'=>'bootstrapelements', 'field'=>'name'),
-    array('module'=>'bootstrapelements', 'action'=>'update', 'mtable'=>'bootstrapelements', 'field'=>'name'),
+    array('module' => 'bootstrapelements', 'action' => 'add', 'mtable' => 'bootstrapelements', 'field' => 'name'),
+    array('module' => 'bootstrapelements', 'action' => 'update', 'mtable' => 'bootstrapelements', 'field' => 'name'),
 );

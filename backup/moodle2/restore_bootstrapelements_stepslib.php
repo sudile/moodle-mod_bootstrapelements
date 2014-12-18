@@ -34,7 +34,7 @@ class restore_bootstrapelements_activity_structure_step extends restore_activity
         $paths = array();
         $paths[] = new restore_path_element('bootstrapelements', '/activity/bootstrap');
 
-        // Return the paths wrapped into standard activity structure
+        // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
     }
 
@@ -45,14 +45,14 @@ class restore_bootstrapelements_activity_structure_step extends restore_activity
         $oldid = $data->id;
         $data->course = $this->get_courseid();
 
-        // insert the bootstrap record
+        // Insert the bootstrap record.
         $newitemid = $DB->insert_record('bootstrapelements', $data);
-        // immediately after inserting "activity" record, call this
+        // Immediately after inserting "activity" record, call this.
         $this->apply_activity_instance($newitemid);
     }
 
     protected function after_execute() {
-        // Add bootstrap related files, no need to match by itemname (just internally handled context)
+        // Add bootstrap related files, no need to match by itemname (just internally handled context).
         $this->add_related_files('mod_bootstrapelements', 'intro', null);
     }
 

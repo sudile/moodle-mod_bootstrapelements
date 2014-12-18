@@ -43,7 +43,8 @@ class backup_bootstrapelements_activity_task extends backup_activity_task {
      * Defines a backup step to store the instance data in the bootstrap.xml file
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_bootstrapelements_activity_structure_step('bootstrapelements_structure', 'bootstrapelements.xml'));
+        $this->add_step(new backup_bootstrapelements_activity_structure_step('bootstrapelements_structure'
+                , 'bootstrapelements.xml'));
     }
 
     /**

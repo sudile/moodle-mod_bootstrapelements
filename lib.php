@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') || die;
  * of the new instance.
  *
  * @global object
- * @param object $bootstrap
+ * @param object $bootstrapelements
  * @return bool|int
  */
 function bootstrapelements_add_instance($bootstrapelements) {
@@ -49,7 +49,7 @@ function bootstrapelements_add_instance($bootstrapelements) {
  * will update an existing instance with new data.
  *
  * @global object
- * @param object $bootstrap
+ * @param object $bootstrapelements
  * @return bool
  */
 function bootstrapelements_update_instance($bootstrapelements) {
@@ -73,13 +73,13 @@ function bootstrapelements_update_instance($bootstrapelements) {
 function bootstrapelements_delete_instance($id) {
     global $DB;
 
-    if (! $bootstrapelements = $DB->get_record("bootstrapelements", array("id"=>$id))) {
+    if (! $bootstrapelements = $DB->get_record("bootstrapelements", array("id" => $id))) {
         return false;
     }
 
     $result = true;
 
-    if (! $DB->delete_records("bootstrapelements", array("id"=>$bootstrapelements->id))) {
+    if (! $DB->delete_records("bootstrapelements", array("id" => $bootstrapelements->id))) {
         $result = false;
     }
 
@@ -98,27 +98,32 @@ function bootstrapelements_delete_instance($id) {
  */
 function bootstrapelements_get_coursemodule_info($coursemodule) {
     global $DB;
-    
-    if ($bootstrapelements = $DB->get_record('bootstrapelements', array('id'=>$coursemodule->instance), 'id, name, intro, introformat, title, bootstraptype')) {
+
+    if ($bootstrapelements = $DB->get_record('bootstrapelements', array('id' => $coursemodule->instance),
+            'id, name, intro, introformat, title, bootstraptype')) {
         if (!$bootstrapelements->name || $bootstrapelements->name == 'bootstrapelements') {
             $bootstrapelements->name = "bootstrapelements".$bootstrapelements->id;
-            $DB->set_field('bootstrapelements', 'name', $bootstrapelements->name, array('id'=>$bootstrapelements->id));
+            $DB->set_field('bootstrapelements', 'name', $bootstrapelements->name, array('id' => $bootstrapelements->id));
         }
-        
+
         $info = new cached_cm_info();
-        // no filtering hre because this info is cached and filtered later
-        
+        // No filtering hre because this info is cached and filtered later.
+
         switch($bootstrapelements->bootstraptype) {
             case 0:
-                $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false)).bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title);    
+                $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrapelements->title,
+                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false)).
+                        bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title);
             break;
-            
+
             case 1:
-                $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));    
+                $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrapelements->title,
+                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
             break;
-            
+
             case 2:
-                $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrapelements->title, format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
+                $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrapelements->title,
+                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
             break;
         }
 
@@ -180,13 +185,13 @@ function bootstrapelements_supports($feature) {
 
 function bootstrapelements_standard($name, $title, $content) {
     $output = html_writer::start_tag('div');
-    
+
     $output .= html_writer::tag('h2', $title);
-    
+
     $output .= html_writer::tag('div', $content);
-    
+
     $output .= html_writer::end_tag('div');
-    
+
     return $output;
 }
 
@@ -194,105 +199,105 @@ function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecont
     $output = html_writer::start_tag('div', array(
         'class' => 'mod-bootstrapelements-toggle'
     ));
+
     $output .= html_writer::start_tag('div', array(
         'class' => 'panel-heading'
     ));
-    
+
     $output .= html_writer::start_tag('h4', array(
         'class' => 'panel-title'
     ));
-    
+
     $output .= html_writer::tag('a', $toggletitle, array(
         'data-toggle' => 'collapse',
         'href' => '#'.$togglename
     ));
-    
+
     $output .= html_writer::end_tag('h4');
-    
+
     $output .= html_writer::end_tag('div');
-    
+
     $output .= html_writer::start_tag('div', array(
         'id' => $togglename,
         'class' => 'panel-collapse collapse'
     ));
-    
+
     $output .= html_writer::tag('div', $togglecontent, array(
         'class' => 'panel-body'
     ));
-    
+
     $output .= html_writer::end_tag('div');
-    
+
     $output .= html_writer::end_tag('div');
-    
+
     return $output;
 }
 
 function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent) {
-    $output = html_writer::start_tag('div', array( // 1
-        //'id' => $id,
+    $output = html_writer::start_tag('div', array(
         'id' => $modalname,
         'class' => 'modal fade',
         'role' => 'dialog',
         'aria-labelledby' => 'myModalLabel',
         'aria-hidden' => 'true'
-    ));  
-    
-    $output .= html_writer::start_tag('div', array( // 2
+    ));
+
+    $output .= html_writer::start_tag('div', array(
         'class' => 'modal-dialog'
     ));
-    
-    $output .= html_writer::start_tag('div', array( // 3
+
+    $output .= html_writer::start_tag('div', array(
         'class' => 'modal-content'
     ));
-    
-    $output .= html_writer::start_tag('div', array( // 4
+
+    $output .= html_writer::start_tag('div', array(
         'class' => 'modal-header'
     ));
-    
+
     $output .= html_writer::start_tag('h4', array(
         'class' => 'modal-title'
     ));
-    
+
     $output .= $modaltitle;
-    
+
     $output .= html_writer::end_tag('h4');
-    
-    $output .= html_writer::end_tag('div'); // 4
-    
-    $output .= html_writer::start_tag('div', array( // 5
+
+    $output .= html_writer::end_tag('div');
+
+    $output .= html_writer::start_tag('div', array(
         'class' => 'modal-body'
     ));
-    
+
     $output .= $modalcontent;
-    
-    $output .= html_writer::end_tag('div'); // 5
-    
+
+    $output .= html_writer::end_tag('div');
+
     $output .= html_writer::start_tag('div', array(
         'class' => 'modal-footer'
     ));
-    
+
     $output .= html_writer::start_tag('button', array(
         'type' => 'button',
         'class' => 'btn btn-default',
         'data-dismiss' => 'modal'
     ));
-    
+
     $output .= 'Close';
-    
+
     $output .= html_writer::end_tag('button');
-    
+
     $output .= html_writer::end_tag('div');
-    
-    $output .= html_writer::end_tag('div'); // 3
-    
-    $output .= html_writer::end_tag('div'); //2
-    
-    $output .= html_writer::end_tag('div'); //1
-    
+
+    $output .= html_writer::end_tag('div');
+
+    $output .= html_writer::end_tag('div');
+
+    $output .= html_writer::end_tag('div');
+
     $output .= html_writer::start_tag('div', array(
         'class' => 'text-center'
     ));
-    
+
     return $output;
 }
 
@@ -301,13 +306,9 @@ function bootstrapelements_modal_button($modalname, $modaltitle) {
         'class' => 'btn btn-primary btn-lg',
         'data-toggle' => 'modal',
         'data-target' => '#'.$modalname
-    ));       
-    
+    ));
     $output .= $modaltitle;
-    
     $output .= html_writer::end_tag('button');
-    
     $output .= html_writer::end_tag('div');
-    
     return $output;
 }

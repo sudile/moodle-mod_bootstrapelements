@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once ($CFG->dirroot.'/course/moodleform_mod.php');
+require_once($CFG->dirroot.'/course/moodleform_mod.php');
 
 class mod_bootstrapelements_mod_form extends moodleform_mod {
 
@@ -35,19 +35,17 @@ class mod_bootstrapelements_mod_form extends moodleform_mod {
         $mform = $this->_form;
 
         $mform->addElement('header', 'generalhdr', get_string('general'));
-        
+
         $mform->addElement('text', 'title', 'Title');
         $mform->setType('title', PARAM_RAW);
         $mform->addRule('title', null, 'required', null, 'client');
-        
+
         $this->add_intro_editor(true, 'Content');
-        
-        $mform->addElement('select', 'bootstraptype', 'Element Type', array(0=>'Modal', 1=>'Toggle', 2=>'Enhanced Label'));  
-        
+
+        $mform->addElement('select', 'bootstraptype', 'Element Type', array(0 => 'Modal', 1 => 'Toggle', 2 => 'Enhanced Label'));
+
         $this->standard_coursemodule_elements();
 
-//-------------------------------------------------------------------------------
-// buttons
         $this->add_action_buttons(true, false, null);
 
     }

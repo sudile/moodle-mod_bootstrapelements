@@ -34,27 +34,15 @@
 class backup_bootstrapelements_activity_structure_step extends backup_activity_structure_step {
 
     protected function define_structure() {
-
-        // To know if we are including userinfo
         $userinfo = $this->get_setting_value('userinfo');
 
-        // Define each element separated
-        $bootstrap = new backup_nested_element('bootstrapelements', array('id'), array(
+        $bootstrapelements = new backup_nested_element('bootstrapelements', array('id'), array(
             'name', 'intro', 'introformat', 'timemodified', 'title', 'bootstraptype'));
 
-        // Build the tree
-        // (love this)
+        $bootstrapelements->set_source_table('bootstrapelements', array('id' => backup::VAR_ACTIVITYID));
 
-        // Define sources
-        $bootstrap->set_source_table('bootstrapelements', array('id' => backup::VAR_ACTIVITYID));
+        $bootstrapelements->annotate_files('mod_bootstrapelements', 'intro', null);
 
-        // Define id annotations
-        // (none)
-
-        // Define file annotations
-        $bootstrap->annotate_files('mod_bootstrapelements', 'intro', null); // This file area hasn't itemid
-
-        // Return the root element (bootstrap), wrapped into standard activity structure
-        return $this->prepare_activity_structure($bootstrap);
+        return $this->prepare_activity_structure($bootstrapelements);
     }
 }

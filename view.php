@@ -26,29 +26,29 @@
 
 require_once("../../config.php");
 
-$id = optional_param('id',0,PARAM_INT);
-$l = optional_param('l',0,PARAM_INT);
+$id = optional_param('id', 0, PARAM_INT);
+$l = optional_param('l', 0, PARAM_INT);
 
 if ($id) {
-    $PAGE->set_url('/mod/bootstrapelements/index.php', array('id'=>$id));
+    $PAGE->set_url('/mod/bootstrapelements/index.php', array('id' => $id));
     if (! $cm = get_coursemodule_from_id('bootstrapelements', $id)) {
         print_error('invalidcoursemodule');
     }
 
-    if (! $course = $DB->get_record("course", array("id"=>$cm->course))) {
+    if (! $course = $DB->get_record("course", array("id" => $cm->course))) {
         print_error('coursemisconf');
     }
 
-    if (! $bootstrap = $DB->get_record("bootstrapelements", array("id"=>$cm->instance))) {
+    if (! $bootstrap = $DB->get_record("bootstrapelements", array("id" => $cm->instance))) {
         print_error('invalidcoursemodule');
     }
 
 } else {
-    $PAGE->set_url('/mod/bootstrapelements/index.php', array('l'=>$l));
-    if (! $bootstrapelements = $DB->get_record("bootstrapelements", array("id"=>$l))) {
+    $PAGE->set_url('/mod/bootstrapelements/index.php', array('l' => $l));
+    if (! $bootstrapelements = $DB->get_record("bootstrapelements", array("id" => $l))) {
         print_error('invalidcoursemodule');
     }
-    if (! $course = $DB->get_record("course", array("id"=>$bootstrapelements->course)) ){
+    if (! $course = $DB->get_record("course", array("id" => $bootstrapelements->course)) ) {
         print_error('coursemisconf');
     }
     if (! $cm = get_coursemodule_from_instance("bootstrap", $bootstrapelements->id, $course->id)) {
