@@ -32,7 +32,7 @@ class restore_bootstrapelements_activity_structure_step extends restore_activity
     protected function define_structure() {
 
         $paths = array();
-        $paths[] = new restore_path_element('bootstrapelements', '/activity/bootstrap');
+        $paths[] = new restore_path_element('bootstrapelements', '/activity/bootstrapelements');
 
         // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);

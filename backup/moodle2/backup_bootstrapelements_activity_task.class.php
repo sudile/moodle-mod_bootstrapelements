@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once($CFG->dirroot . '/mod/bootstrap/backup/moodle2/backup_bootstrapelements_stepslib.php');
+require_once($CFG->dirroot . '/mod/bootstrapelements/backup/moodle2/backup_bootstrapelements_stepslib.php');
 
 /**
  * Provides the steps to perform one complete backup of the Bootstrap instance
