@@ -210,6 +210,7 @@ function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecont
 
     $output .= html_writer::tag('a', $toggletitle, array(
         'data-toggle' => 'collapse',
+        'class' => 'accordion-toggle collapsed',
         'href' => '#'.$togglename
     ));
 
