@@ -112,18 +112,18 @@ function bootstrapelements_get_coursemodule_info($coursemodule) {
         switch($bootstrapelements->bootstraptype) {
             case 0:
                 $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false)).
-                        bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title);
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false)).
+                        bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title, $bootstrapelements->bootstrapstyle);
             break;
 
             case 1:
                 $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false));
             break;
 
             case 2:
                 $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrap', $bootstrapelements, $coursemodule->id, false));
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false));
             break;
         }
 
