@@ -3,6 +3,9 @@ Changes in version 1.1 (2015010600)
 - Added FontAwesome icon picker & support for use of FontAwesome icons to display.
 - Replaced more hardcoded strings, with additions to language strings.
 - Added support for Blockquote to be used.
+- Changed display of arrow on toggle to fix an issue when using this with Shoehorn.
+- Added FontAwesome to CSS to ensure that it is always loaded.
+- Changed titles from <h2> to <h4> tags to be more consistent with Moodle's use of heading tags.
 - FIX: Issue #4 - Fixed issue with all images added through the editor rendering with 404 errors.
 
 Changes in version 1.0.1 (2015010500)
