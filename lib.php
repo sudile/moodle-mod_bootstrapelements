@@ -100,7 +100,7 @@ function bootstrapelements_get_coursemodule_info($coursemodule) {
     global $DB;
 
     if ($bootstrapelements = $DB->get_record('bootstrapelements', array('id' => $coursemodule->instance),
-            'id, name, intro, introformat, title, bootstraptype')) {
+            'id, name, intro, introformat, title, bootstraptype, bootstrapicon')) {
         if (!$bootstrapelements->name || $bootstrapelements->name == 'bootstrapelements') {
             $bootstrapelements->name = "bootstrapelements".$bootstrapelements->id;
             $DB->set_field('bootstrapelements', 'name', $bootstrapelements->name, array('id' => $bootstrapelements->id));
@@ -112,18 +112,23 @@ function bootstrapelements_get_coursemodule_info($coursemodule) {
         switch($bootstrapelements->bootstraptype) {
             case 0:
                 $info->content = bootstrapelements_modal_outline($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false)).
-                        bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title, $bootstrapelements->bootstrapstyle);
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false), $bootstrapelements->bootstrapicon).
+                        bootstrapelements_modal_button($bootstrapelements->name, $bootstrapelements->title, $bootstrapelements->bootstrapicon);
             break;
 
             case 1:
                 $info->content = bootstrapelements_toggle_outline($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false));
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false), $bootstrapelements->bootstrapicon);
             break;
 
             case 2:
                 $info->content = bootstrapelements_standard($bootstrapelements->name, $bootstrapelements->title,
-                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false));
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false), $bootstrapelements->bootstrapicon);
+            break;
+        
+            case 3:
+                $info->content = bootstrapelements_blockquote($bootstrapelements->name, $bootstrapelements->title,
+                        format_module_intro('bootstrapelements', $bootstrapelements, $coursemodule->id, false), $bootstrapelements->bootstrapicon);
             break;
         }
 
@@ -183,10 +188,10 @@ function bootstrapelements_supports($feature) {
     }
 }
 
-function bootstrapelements_standard($name, $title, $content) {
+function bootstrapelements_standard($name, $title, $content, $icon) {
     $output = html_writer::start_tag('div');
 
-    $output .= html_writer::tag('h2', $title);
+    $output .= html_writer::tag('h2', '<i class="fa '.$icon.'"></i>'.$title);
 
     $output .= html_writer::tag('div', $content);
 
@@ -195,7 +200,7 @@ function bootstrapelements_standard($name, $title, $content) {
     return $output;
 }
 
-function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecontent) {
+function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecontent, $icon) {
     $output = html_writer::start_tag('div', array(
         'class' => 'mod-bootstrapelements-toggle'
     ));
@@ -208,7 +213,7 @@ function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecont
         'class' => 'panel-title'
     ));
 
-    $output .= html_writer::tag('a', $toggletitle, array(
+    $output .= html_writer::tag('a', '<i class="fa '.$icon.'"></i>'.$toggletitle, array(
         'data-toggle' => 'collapse',
         'class' => 'accordion-toggle collapsed',
         'href' => '#'.$togglename
@@ -234,7 +239,7 @@ function bootstrapelements_toggle_outline($togglename, $toggletitle, $togglecont
     return $output;
 }
 
-function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent) {
+function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent, $icon) {
     $output = html_writer::start_tag('div', array(
         'id' => $modalname,
         'class' => 'modal fade',
@@ -259,6 +264,8 @@ function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent)
         'class' => 'modal-title'
     ));
 
+    $output .= '<i class="fa '.$icon.'"></i>';
+    
     $output .= $modaltitle;
 
     $output .= html_writer::end_tag('h4');
@@ -302,14 +309,26 @@ function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent)
     return $output;
 }
 
-function bootstrapelements_modal_button($modalname, $modaltitle) {
+function bootstrapelements_modal_button($modalname, $modaltitle, $icon) {
     $output = html_writer::start_tag('button', array(
         'class' => 'btn btn-primary btn-lg',
         'data-toggle' => 'modal',
         'data-target' => '#'.$modalname
     ));
+    $output .= '<i class="fa '.$icon.'"></i>';
     $output .= $modaltitle;
     $output .= html_writer::end_tag('button');
     $output .= html_writer::end_tag('div');
+    return $output;
+}
+
+function bootstrapelements_blockquote($name, $title, $content, $icon) {
+    $output = html_writer::start_tag('blockquote');
+    
+    $output .= html_writer::tag('h2', '<i class="fa '.$icon.'"></i>'.$title);
+    
+    $output .= $content;
+    
+    $output .= html_writer::end_tag('blockquote');
     return $output;
 }
