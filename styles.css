@@ -1,24 +1,23 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+
 .mod-bootstrapelements-toggle {
-	min-width: 200px;
+    min-width: 200px;
 }
 
 .mod-bootstrapelements-toggle .panel-heading a {
-	max-width: 100%;
-	white-space: normal;
-	display: inline;
+    max-width: 100%;
+    white-space: normal;
+    display: inline;
 }
 
-.panel-heading .accordion-toggle:after {
-    /* symbol for "opening" panels */
-    font-family: 'FontAwesome';  /* essential for enabling glyphicon */
-    content: "\f062";    /* adjust as needed, taken from bootstrap.css */
-    float: right;        /* adjust as needed */
-    color: grey;         /* adjust as needed */
+.panel-heading .accordion-toggle:before {
+    font-family: 'FontAwesome';
+    content: "\f062";
+    margin-right: 5px;
+    color: grey;
 }
-.panel-heading .accordion-toggle.collapsed:after {
-    /* symbol for "collapsed" panels */
-    
-    content: "\f063";    /* adjust as needed, taken from bootstrap.css */
+.panel-heading .accordion-toggle.collapsed:before {
+    content: "\f063";
 }
 
 .bootstrapelements .fa {
