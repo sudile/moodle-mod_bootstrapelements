@@ -21,6 +21,6 @@
     content: "\f063";    /* adjust as needed, taken from bootstrap.css */
 }
 
-.fa {
+.bootstrapelements .fa {
     margin-right: 5px;
 }
