@@ -191,7 +191,7 @@ function bootstrapelements_supports($feature) {
 function bootstrapelements_standard($name, $title, $content, $icon) {
     $output = html_writer::start_tag('div');
 
-    $output .= html_writer::tag('h2', '<i class="fa '.$icon.'"></i>'.$title);
+    $output .= html_writer::tag('h4', '<i class="fa '.$icon.'"></i>'.$title);
 
     $output .= html_writer::tag('div', $content);
 
@@ -325,7 +325,7 @@ function bootstrapelements_modal_button($modalname, $modaltitle, $icon) {
 function bootstrapelements_blockquote($name, $title, $content, $icon) {
     $output = html_writer::start_tag('blockquote');
     
-    $output .= html_writer::tag('h2', '<i class="fa '.$icon.'"></i>'.$title);
+    $output .= html_writer::tag('h4', '<i class="fa '.$icon.'"></i>'.$title);
     
     $output .= $content;
     

@@ -10,13 +10,18 @@
     display: inline;
 }
 
-.panel-heading .accordion-toggle:before {
+.panel-heading .accordion-toggle:after {
     font-family: 'FontAwesome';
     content: "\f062";
-    margin-right: 5px;
+    margin-left: 5px;
     color: grey;
 }
-.panel-heading .accordion-toggle.collapsed:before {
+
+.panel-heading .accordion-toggle:hover {
+    text-decoration: none;
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
     content: "\f063";
 }
 
