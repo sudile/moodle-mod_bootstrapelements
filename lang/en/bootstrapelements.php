@@ -38,3 +38,13 @@ $string['modulename_link'] = 'mod/bootstrapelements/view';
 $string['modulenameplural'] = 'Bootstrap elements';
 $string['pluginadministration'] = 'Bootstrap elements administration';
 $string['pluginname'] = 'Bootstrap elements';
+
+$string['formtitle'] = 'Title';
+$string['formcontent'] = 'Content';
+$string['bootstraptype'] = 'Element Type';
+$string['bootstrapicon'] = 'Icon';
+
+$string['modal'] = 'Modal';
+$string['toggle'] = 'Toggle';
+$string['enhancedlabel'] = 'Enhanced Label';
+$string['blockquote'] = 'Blockquote';
