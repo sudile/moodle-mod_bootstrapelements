@@ -15,6 +15,7 @@
     content: "\f062";
     margin-left: 5px;
     color: grey;
+    float: right;
 }
 
 .panel-heading .accordion-toggle:hover {
