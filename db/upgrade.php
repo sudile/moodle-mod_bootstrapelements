@@ -30,6 +30,21 @@ function xmldb_bootstrapelements_upgrade($oldversion) {
     global $CFG, $DB;
 
     $dbman = $DB->get_manager();
+    
+    if ($oldversion < 2015010600) {
+
+        // Define field bootstrapstyle to be added to bootstrapelements.
+        $table = new xmldb_table('bootstrapelements');
+        $field = new xmldb_field('bootstrapicon', XMLDB_TYPE_TEXT, null, null, null, null, null, 'bootstraptype');
+
+        // Conditionally launch add field bootstrapstyle.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Bootstrap savepoint reached.
+        upgrade_mod_savepoint(true, 2015010600, 'bootstrapelements');
+    }
     return true;
 }
 
