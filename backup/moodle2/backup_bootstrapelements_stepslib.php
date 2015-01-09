@@ -37,7 +37,7 @@ class backup_bootstrapelements_activity_structure_step extends backup_activity_s
         $userinfo = $this->get_setting_value('userinfo');
 
         $bootstrapelements = new backup_nested_element('bootstrapelements', array('id'), array(
-            'name', 'intro', 'introformat', 'timemodified', 'title', 'bootstraptype'));
+            'name', 'intro', 'introformat', 'timemodified', 'title', 'bootstraptype', 'bootstrapicon'));
 
         $bootstrapelements->set_source_table('bootstrapelements', array('id' => backup::VAR_ACTIVITYID));
 
