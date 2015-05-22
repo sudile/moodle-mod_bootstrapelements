@@ -245,7 +245,8 @@ function bootstrapelements_modal_outline($modalname, $modaltitle, $modalcontent,
         'class' => 'modal fade',
         'role' => 'dialog',
         'aria-labelledby' => 'myModalLabel',
-        'aria-hidden' => 'true'
+        'aria-hidden' => 'true',
+        'style' => 'display: none;'
     ));
 
     $output .= html_writer::start_tag('div', array(
