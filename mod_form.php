@@ -41,7 +41,7 @@ class mod_bootstrapelements_mod_form extends moodleform_mod {
         $mform->setType('title', PARAM_RAW);
         $mform->addRule('title', null, 'required', null, 'client');
 
-        $this->add_intro_editor(true, get_string('formcontent', 'mod_bootstrapelements'));
+        $this->standard_intro_elements(get_string('formcontent', 'mod_bootstrapelements'));
 
         $mform->addElement('select', 'bootstraptype', get_string('bootstraptype', 'mod_bootstrapelements'), array(0 => get_string('modal', 'mod_bootstrapelements'), 1 => get_string('toggle', 'mod_bootstrapelements'), 2 => get_string('enhancedlabel', 'mod_bootstrapelements'), 3 => get_string('blockquote', 'mod_bootstrapelements')));
         
