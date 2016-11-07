@@ -17,18 +17,18 @@
 /**
  * Version details
  *
- * @package    mod
- * @subpackage bootstrapelements
+ * @package    mod_bootstrapelements
  * @copyright  2014 Birmingham City University <michael.grant@bcu.ac.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @author     Birmingham City University <michael.grant@bcu.ac.uk>
+ * @author     Johannes Burk <mail@johannesburk.de>
  *
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2015010600;
-$plugin->requires  = 2014050800;
+$plugin->version   = 2016110200;
+$plugin->requires  = 2015051100; // Requires at least moodle 2.9.0.
 $plugin->component = 'mod_bootstrapelements';
-$plugin->cron      = 0;
-$plugin->release   = '1.1';
-$plugin->maturity  = 'MATURITY_RC';
+$plugin->maturity  = MATURITY_RC;
+$plugin->release   = 'Bootstrapelements activity Version 2.0 (Build: 2016110200)';

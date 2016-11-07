@@ -47,12 +47,19 @@ class mod_bootstrapelements_mod_form extends moodleform_mod {
         
         $mform->addElement('text', 'bootstrapicon', get_string('bootstrapicon', 'mod_bootstrapelements'));
         $mform->setType('bootstrapicon', PARAM_TEXT);
-                
-        $form_html = '<link href="'.$CFG->wwwroot.'/mod/bootstrapelements/css/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css">';
-        $form_html .= '<script type="text/javascript" src="'.$CFG->wwwroot.'/mod/bootstrapelements/js/fontawesome-iconpicker.min.js"></script>';
-        $form_html .= '<script type="text/javascript">$(function(){ $("#id_bootstrapicon").iconpicker({placement: "right", selectedCustomClass: "label label-success"}); });</script>';
-           
-        $mform->addElement('html', $form_html);
+
+        global $PAGE;
+        $PAGE->requires->css('/mod/bootstrapelements/fontawesome-iconpicker-1.2.2/dist/css/fontawesome-iconpicker.min.css');
+        $PAGE->requires->css('/mod/bootstrapelements/css/custom.css');
+        $PAGE->requires->js_amd_inline("
+            require(['jquery', 'mod_bootstrapelements/iconpicker'], function($, iconpicker) {
+                $('#id_bootstrapicon').iconpicker({
+                    placement: 'right',
+                    selectedCustomClass: 'label label-success'
+                });
+            });
+        ");
+
         $this->standard_coursemodule_elements();
         $this->add_action_buttons(true, false, null);
 
